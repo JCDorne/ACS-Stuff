@@ -4,8 +4,10 @@ Some ACS files I wrote for my fctlib.
 
 ## Featured :
 
+* afklib
 * debuglib
 * sharelib
+* telelib
 
 ## License
 

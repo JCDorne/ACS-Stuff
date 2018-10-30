@@ -10,15 +10,15 @@ By JCD
 */
 
 
-#define INFO	0
-#define WARNING 1
-#define ERROR	2
+#define INFO     0
+#define WARNING  1
+#define ERROR    2
 
 str lvl_error[3] =
 {
-	"\cf[INFO]\c- ",		// Gold
-	"\ci[WARNING]\c- ",		// Orange
-	"\cg[ERROR]\c- "		// Red
+    "\cf[INFO]\c- ",        // Gold
+    "\ci[WARNING]\c- ",     // Orange
+    "\cg[ERROR]\c- "        // Red
 };
 
 
@@ -30,10 +30,10 @@ str lvl_error[3] =
 //==============================================================================
 function void debug (int lvlerror, str msg)
 {
-	if (!GetCvar("sv_debug"))
-		return;
-	
-	Log(s:lvl_error[lvlerror], s:" - ", s:msg);
+    if (!GetCvar("sv_debug"))
+        return;
+    
+    Log(s:lvl_error[lvlerror], s:" - ", s:msg);
 }
 
 
@@ -44,10 +44,10 @@ function void debug (int lvlerror, str msg)
 //==============================================================================
 function void debug_int (int lvlerror, str msg, int valeur)
 {
-	if (!GetCvar("sv_debug"))
-		return;
-	
-	Log(s:lvl_error[lvlerror], s:" - ", s:msg, s:" : ", d:valeur);
+    if (!GetCvar("sv_debug"))
+        return;
+    
+    Log(s:lvl_error[lvlerror], s:" - ", s:msg, s:" : ", d:valeur);
 }
 
 
@@ -58,10 +58,10 @@ function void debug_int (int lvlerror, str msg, int valeur)
 //==============================================================================
 function void debug_fixed (int lvlerror, str msg, int valeur)
 {
-	if (!GetCvar("sv_debug"))
-		return;
-	
-	Log(s:lvl_error[lvlerror], s:" - ", s:msg, s:" : ", f:valeur);
+    if (!GetCvar("sv_debug"))
+        return;
+    
+    Log(s:lvl_error[lvlerror], s:" - ", s:msg, s:" : ", f:valeur);
 }
 
 
@@ -72,10 +72,10 @@ function void debug_fixed (int lvlerror, str msg, int valeur)
 //==============================================================================
 function void debug_char (int lvlerror, str msg, int valeur)
 {
-	if (!GetCvar("sv_debug"))
-		return;
-	
-	Log(s:lvl_error[lvlerror], s:" - ", s:msg, s:" : ", c:valeur);
+    if (!GetCvar("sv_debug"))
+        return;
+    
+    Log(s:lvl_error[lvlerror], s:" - ", s:msg, s:" : ", c:valeur);
 }
 
 
@@ -86,13 +86,13 @@ function void debug_char (int lvlerror, str msg, int valeur)
 //==============================================================================
 function void debug_bool (int lvlerror, str msg, int valeur)
 {
-	if (!GetCvar("sv_debug"))
-		return;
+    if (!GetCvar("sv_debug"))
+        return;
 
-	if (valeur > 0)
-		Log(s:lvl_error[lvlerror], s:" - ", s:msg, s:" : True");
-	else
-		Log(s:lvl_error[lvlerror], s:" - ", s:msg, s:" : False");
+    if (valeur > 0)
+        Log(s:lvl_error[lvlerror], s:" - ", s:msg, s:" : True");
+    else
+        Log(s:lvl_error[lvlerror], s:" - ", s:msg, s:" : False");
 }
 
 
@@ -103,8 +103,8 @@ function void debug_bool (int lvlerror, str msg, int valeur)
 //==============================================================================
 function void debug_str (int lvlerror, str msg, str valeur)
 {
-	if (!GetCvar("sv_debug"))
-		return;
-	
-	Log(s:lvl_error[lvlerror], s:" - ", s:msg, s:" : ", s:valeur);
+    if (!GetCvar("sv_debug"))
+        return;
+    
+    Log(s:lvl_error[lvlerror], s:" - ", s:msg, s:" : ", s:valeur);
 }
