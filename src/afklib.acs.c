@@ -29,10 +29,12 @@ By JCD
 #define PLAYER_DEFAULT_TID  10000
 #define ID_AFK              901
 #define MAX_PLAYERS         100
+#define snd                 "DMG_SND"
 
 // Scripts
 #define AFK_SCRIPT_OPEN     310
-#define AFK_SCRIPT_CLIENT   311
+#define AFK_SCRIPT_ENTER    311
+#define AFK_SCRIPT_CLIENT   312
 
 int afk[MAX_PLAYERS][4];
 
@@ -115,6 +117,21 @@ Script AFK_SCRIPT_OPEN OPEN
 
 //==============================================================================
 //
+// ENTER
+//
+//==============================================================================
+script AFK_SCRIPT_ENTER ENTER
+{
+    if (!GetCvar("sv_afk"))
+        terminate;
+        
+    Thing_ChangeTID (0, PLAYER_DEFAULT_TID + PlayerNumber());
+}
+
+
+
+//==============================================================================
+//
 // CLIENT
 //
 //==============================================================================
@@ -122,4 +139,8 @@ script AFK_SCRIPT_CLIENT (void) CLIENTSIDE
 {
     HudMessage(s:"!!! WARNING !!! DON'T BE AFK !!! WARNING !!!"; 
         HUDMSG_PLAIN|HUDMSG_FADEINOUT, ID_AFK, CR_RED, 0.5, 0.5, 3.0);
+        
+    // Sound
+    if (GetCvar("sv_afk_sound"))
+        LocalAmbientSound(snd, 127);
 }

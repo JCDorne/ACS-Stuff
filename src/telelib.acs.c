@@ -31,7 +31,7 @@ By JCD
 
 // Stuff
 #define ID_TELE                 910
-#define THING_SPAWNED           "StalactiteLarge"
+#define THING_SPAWNED           "HealthBonus"
 
 // scripts
 #define TELE_SCRIPT_OPEN        320
@@ -93,7 +93,7 @@ script TELE_SCRIPT_DISPLAY (void)
 //==============================================================================
 script TELE_SCRIPT_DEST (int x, int y, int z)
 {
-    Teleporter[(TeleporterIndex*TELESIZE) + TELEDEST] = 0;
+    Teleporter[(TeleporterIndex*TELESIZE) + TELEDEST] = 1;
     Teleporter[(TeleporterIndex*TELESIZE) + TELEX] = x << 16;
     Teleporter[(TeleporterIndex*TELESIZE) + TELEY] = y << 16;
     Teleporter[(TeleporterIndex*TELESIZE) + TELEZ] = z << 16;
@@ -113,18 +113,17 @@ script TELE_SCRIPT_SOURCE (int x, int y, int z)
         Log(s:"[telelib] : Set destination before !");
         terminate;
     }
-    
-    int tid1 = UniqueTID (1000, 2000);
-    int tid2 = UniqueTID (1000, 2000);
-    
+
     SpawnForced(THING_SPAWNED, x << 16, y << 16, z << 16, UniqueTID (1000, 2000) + (TeleporterIndex*TELESIZE), 0);
     
+    int tid1 = UniqueTID (1000, 2000);
     SpawnForced("SecActUse", x << 16, y << 16, z << 16, tid1 + (TeleporterIndex*TELESIZE), 0);
     Thing_SetSpecial(tid1 + (TeleporterIndex*TELESIZE), 226, TELE_SCRIPT_TP, 0, TeleporterIndex);
     
+    int tid2 = UniqueTID (1000, 2000);
     SpawnForced("SecActEnter", x << 16, y << 16, z << 16, tid2 + (TeleporterIndex*TELESIZE), 0);
     Thing_SetSpecial(tid2 + (TeleporterIndex*TELESIZE), 226, TELE_SCRIPT_DISPLAY, 0, 0);
     
-    Teleporter[(TeleporterIndex*TELESIZE) + TELEDEST] = 1;
+    Teleporter[(TeleporterIndex*TELESIZE) + TELEDEST] = 2;
     TeleporterIndex++;
 }

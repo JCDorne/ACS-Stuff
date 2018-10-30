@@ -32,6 +32,14 @@ By JCD
 //
 //==============================================================================
 
+// Keys
+#define BLUEKEYCARD         0
+#define BLUESKULLKEY        1
+#define REDKEYCARD          2
+#define REDSKULLKEY         3
+#define YELLOWKEYCARD       4
+#define YELLOWSKULLKEY      5
+
 // Flags
 #define FLAG_BCARD          1
 #define FLAG_BSKUL          2
@@ -84,45 +92,45 @@ script KEY_SCRIPT_CHANGE (int key)
         default : break;
         
         // Blue Card
-        case FLAG_BCARD : 
+        case BLUEKEYCARD : 
             keyValue |= FLAG_BCARD;
             keyclass = "BlueCard";
             Color = CR_BLUE;
             break;
         
         // Blue Skull
-        case FLAG_BSKUL : 
+        case BLUESKULLKEY : 
             keyValue |= FLAG_BSKUL;
             keyclass = "BlueSkull";
             Color = CR_BLUE;
             break;
             
-        // Yellow Card
-        case FLAG_YCARD : 
-            keyValue |= FLAG_YCARD;
-            keyclass = "YellowCard";
-            Color = CR_YELLOW;
-            break;
-            
-        // Yellow Skull
-        case FLAG_YSKUL : 
-            keyValue |= FLAG_YSKUL;
-            keyclass = "YellowSkull";
-            Color = CR_YELLOW;
-            break;
-            
         // Red Card
-        case FLAG_RCARD : 
+        case REDKEYCARD : 
             keyValue |= FLAG_RCARD;
             keyclass = "RedCard";
             Color = CR_RED;
             break;
             
         // Red Skull
-        case FLAG_RSKUL : 
+        case REDSKULLKEY : 
             keyValue |= FLAG_RSKUL;
             keyclass = "RedSkull";
             Color = CR_RED;
+            break;
+            
+        // Yellow Card
+        case YELLOWKEYCARD : 
+            keyValue |= FLAG_YCARD;
+            keyclass = "YellowCard";
+            Color = CR_YELLOW;
+            break;
+            
+        // Yellow Skull
+        case YELLOWSKULLKEY : 
+            keyValue |= FLAG_YSKUL;
+            keyclass = "YellowSkull";
+            Color = CR_YELLOW;
             break;
     }
     
@@ -150,12 +158,12 @@ script KEY_SCRIPT_OPEN OPEN
 {
     if (GetCvar("sv_sharekeys"))
     {
-        Thing_SetSpecial (FIRST_TAG, 80, KEY_SCRIPT_CHANGE, 0, FLAG_BCARD);
-        Thing_SetSpecial (FIRST_TAG + 1, 80, KEY_SCRIPT_CHANGE, 0, FLAG_BSKUL);
-        Thing_SetSpecial (FIRST_TAG + 2, 80, KEY_SCRIPT_CHANGE, 0, FLAG_RCARD);
-        Thing_SetSpecial (FIRST_TAG + 3, 80, KEY_SCRIPT_CHANGE, 0, FLAG_RSKUL);
-        Thing_SetSpecial (FIRST_TAG + 4, 80, KEY_SCRIPT_CHANGE, 0, FLAG_YCARD);
-        Thing_SetSpecial (FIRST_TAG + 5, 80, KEY_SCRIPT_CHANGE, 0, FLAG_YSKUL);
+        Thing_SetSpecial (FIRST_TAG, 80, KEY_SCRIPT_CHANGE, 0, BLUEKEYCARD);
+        Thing_SetSpecial (FIRST_TAG + 1, 80, KEY_SCRIPT_CHANGE, 0, BLUESKULLKEY);
+        Thing_SetSpecial (FIRST_TAG + 2, 80, KEY_SCRIPT_CHANGE, 0, REDKEYCARD);
+        Thing_SetSpecial (FIRST_TAG + 3, 80, KEY_SCRIPT_CHANGE, 0, REDSKULLKEY);
+        Thing_SetSpecial (FIRST_TAG + 4, 80, KEY_SCRIPT_CHANGE, 0, YELLOWKEYCARD);
+        Thing_SetSpecial (FIRST_TAG + 5, 80, KEY_SCRIPT_CHANGE, 0, YELLOWSKULLKEY);
         
         Log(s:"sharelib - \cdon");
         
