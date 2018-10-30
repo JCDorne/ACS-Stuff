@@ -5,6 +5,7 @@ Some ACS files I wrote for my fctlib.
 ## Featured :
 
 * debuglib
+* sharelib
 
 ## License
 

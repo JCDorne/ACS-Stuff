@@ -10,7 +10,7 @@ By JCD
 */
 
 
-#define	INFO	0
+#define INFO	0
 #define WARNING 1
 #define ERROR	2
 
