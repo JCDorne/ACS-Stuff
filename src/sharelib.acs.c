@@ -5,6 +5,18 @@ Share Key library (ACS version, Zdaemon)
 
 Version 1.0
 
+You nee to use a patchinfo lump in order to make it work :
+	[*]
+	// Error Thing
+	Thing_Delete (32000)
+	// KEYS
+	ThingH_Change (5, *,*,*,*,*,*,*,*,*,FIRST_TAG,  *,*,*,*,*,*)
+	ThingH_Change (40,*,*,*,*,*,*,*,*,*,FIRST_TAG+1,*,*,*,*,*,*)
+	ThingH_Change (13,*,*,*,*,*,*,*,*,*,FIRST_TAG+2,*,*,*,*,*,*)
+	ThingH_Change (38,*,*,*,*,*,*,*,*,*,FIRST_TAG+3,*,*,*,*,*,*)
+	ThingH_Change (6, *,*,*,*,*,*,*,*,*,FIRST_TAG+4,*,*,*,*,*,*)
+	ThingH_Change (39,*,*,*,*,*,*,*,*,*,FIRST_TAG+5,*,*,*,*,*,*)
+
 By JCD
 ================================================================================
 */
@@ -39,6 +51,7 @@ By JCD
 #define KEY_SCRIPT_ENTER	301
 #define KEY_SCRIPT_RESPAWN	302
 #define KEY_SCRIPT_JOIN		303
+#define KEY_SCRIPT_CHANGE	304
 
 str KeyList[6] =
 {
@@ -78,7 +91,7 @@ script KEY_SCRIPT_CHANGE (int key)
 			break;
 		
 		// Blue Skull
-		case FLAG_BSKULL : 
+		case FLAG_BSKUL : 
 			keyValue |= FLAG_BSKUL;
 			keyclass = "BlueSkull";
 			Color = CR_BLUE;
@@ -138,7 +151,7 @@ script KEY_SCRIPT_OPEN OPEN
 	if (GetCvar("sv_sharekeys"))
 	{
 		Thing_SetSpecial (FIRST_TAG, 80, KEY_SCRIPT_CHANGE, 0, FLAG_BCARD);
-		Thing_SetSpecial (FIRST_TAG + 1, 80, KEY_SCRIPT_CHANGE, 0, FLAG_BSKULL);
+		Thing_SetSpecial (FIRST_TAG + 1, 80, KEY_SCRIPT_CHANGE, 0, FLAG_BSKUL);
 		Thing_SetSpecial (FIRST_TAG + 2, 80, KEY_SCRIPT_CHANGE, 0, FLAG_RCARD);
 		Thing_SetSpecial (FIRST_TAG + 3, 80, KEY_SCRIPT_CHANGE, 0, FLAG_RSKUL);
 		Thing_SetSpecial (FIRST_TAG + 4, 80, KEY_SCRIPT_CHANGE, 0, FLAG_YCARD);
